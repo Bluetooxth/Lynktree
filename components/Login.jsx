@@ -34,7 +34,7 @@ const LoginForm = () => {
         router.push("/dashboard");
       }
     } catch (error) {
-      setError(error.response?.data?.error || "An unexpected error occurred");
+        setError(error.response?.data?.message || "An unexpected error occurred");
     } finally {
       setLoading(false);
     }
