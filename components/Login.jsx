@@ -1,9 +1,11 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
 const LoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -29,7 +31,7 @@ const LoginForm = () => {
       });
 
       if (data.message === "Login successful") {
-        window.location.href = "/dashboard";
+        router.push("/dashboard");
       }
     } catch (error) {
       setError(error.response?.data?.error || "An unexpected error occurred");
