@@ -1,0 +1,74 @@
+body {
+  background: #000000;
+  color: #ffffff;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.formm {
+  background: #1f1f1f;
+}
+
+.heading {
+  background: linear-gradient(45deg, #0891b2, #e11d48);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+.dotgrid {
+  background: #000000;
+  background-image: radial-gradient(circle, #303033 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.formbg {
+  background: #0a0a0a;
+}
+
+.slow {
+  transition: all 0.5s;
+}
+
+.card,
+.inputt {
+  background: #1f1f1f;
+  color: #ffffff;
+  border: 2px solid #0890b200;
+  transition: 0.5s ease-in-out;
+}
+
+.card:hover {
+  border: 2px solid #0891b2;
+}
+
+.inputt {
+  background: #0a0a0a;
+}
+
+.inputt:focus {
+  border: 2px solid #0891b2;
+}
+
+.btn {
+  background: #1f1f1f;
+  color: #ffffff;
+  border: 2px solid #333333;
+  transition: 0.5s ease-in-out;
+}
+.btn:hover {
+  background: #333333;
+}
+
+.link {
+  background: #1f1f1f;
+  border: 2px solid #333333;
+  border-radius: 18px;
+  transition: all 0.5s;
+}
+.link:hover {
+  border-radius: 8px;
+}
