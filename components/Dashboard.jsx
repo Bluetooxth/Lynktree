@@ -27,6 +27,9 @@ const UserUpdateForm = () => {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const { data } = await axios.get(`${apiUrl}/get`, {
         withCredentials: true,
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
 
       if (data) {
