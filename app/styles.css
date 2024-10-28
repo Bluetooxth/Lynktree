@@ -50,7 +50,7 @@ body {
 }
 
 .inputt:focus {
-  border: 2px solid #0891b2;
+  border: 2px solid #444444;
 }
 
 .btn {
