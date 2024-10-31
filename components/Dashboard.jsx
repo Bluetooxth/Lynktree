@@ -120,7 +120,9 @@ const UserUpdateForm = () => {
           onSubmit={handleSubmit}
         >
           <h3 className="text-xl font-medium text-zinc-200">
-            Your profile url is {`https://lynktree.vercel.app/${username}`}
+            <Link href={`/${username}`}>
+            View Profile
+            </Link>
           </h3>
           <h2 className="text-3xl font-medium text-zinc-400">
             Update your Lynktree

@@ -36,15 +36,14 @@ const Profile = ({ name, username, tagline, profileImg, links }) => {
             className="rounded-full h-[175px] w-[175px] object-cover"
             alt={`${name}'s profile image`}
           />
-          {/* <h2 className="text-3xl font-medium">{name}</h2> */}
           <p className="text-xl font-medium">{`@${username}`}</p>
-          <p className="text-xl max-w-[350px]">{tagline}</p>
+          <p className="text-xl max-w-[350px] text-center">{tagline}</p>
         </div>
 
-        <div className="flex flex-col justify-start items-center w-full gap-5">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-[500px]">
           {links.length > 0 ? (
             links.map((link, index) => {
-              const IconComponent = iconMap[link.icon.toLowerCase()];
+              const IconComponent = iconMap[link.icon.toLowerCase()] || iconMap.default;
 
               return (
                 <Link
@@ -52,10 +51,9 @@ const Profile = ({ name, username, tagline, profileImg, links }) => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex justify-between items-center gap-2 px-7 py-2 md:py-3 w-full max-w-[500px] link"
+                  className="flex flex-col justify-center items-center gap-2 p-7 rounded-lg link transition-transform hover:scale-105"
                 >
-                  {IconComponent && <IconComponent className="text-3xl" />}
-                  <span className="text-2xl">{link.name}</span>
+                  {IconComponent && <IconComponent className="text-4xl" />}
                 </Link>
               );
             })
