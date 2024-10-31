@@ -4,6 +4,9 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { Plus, Trash, Edit, LogOut } from "lucide-react";
+import { getCookie } from "@/lib/getCookie";
+import { removeCookie } from "@/lib/removeCookie";
+import Cookies from "universal-cookie";
 
 const UserUpdateForm = () => {
   const router = useRouter();
@@ -24,11 +27,12 @@ const UserUpdateForm = () => {
 
   const getUser = async () => {
     try {
+      const token = getCookie();
       const apiUrl = process.env.NEXT_PUBLIC_API_URL;
       const { data } = await axios.get(`${apiUrl}/get`, {
-        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -304,13 +308,10 @@ const UserUpdateForm = () => {
               type="button"
               onClick={async () => {
                 try {
-                  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-                  await axios.post(
-                    `${apiUrl}/logout`,
-                    {},
-                    { withCredentials: true }
-                  );
-                  router.push("/login");
+                  removeCookie()
+                  setTimeout(() => {
+                    router.push("/login");
+                  }, 5000);
                 } catch (error) {
                   setError("Error logging out");
                 }

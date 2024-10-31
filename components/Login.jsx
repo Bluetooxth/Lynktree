@@ -2,6 +2,8 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { setCookie } from "@/lib/setCookie";
+import Cookies from "universal-cookie";
 import axios from "axios";
 
 const LoginForm = () => {
@@ -25,7 +27,6 @@ const LoginForm = () => {
           password,
         },
         {
-          withCredentials: true,
           headers: {
             "Content-Type": "application/json",
           },
@@ -35,7 +36,10 @@ const LoginForm = () => {
       if (data.error) {
         setError(data.error);
       } else {
-        router.push("/dashboard");
+        setCookie(data.token);
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 500);
       }
     } catch (error) {
       setError(error.response?.data?.message || "An unexpected error occurred");
