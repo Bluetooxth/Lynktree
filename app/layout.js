@@ -17,7 +17,7 @@ export const metadata = {
     url: "https://lynktree.vercel.app",
     images: [
       {
-        url: "/preview.svg",
+        url: "/preview.png",
         width: 800,
         height: 600,
         alt: "Lynktree Preview Image",
@@ -29,7 +29,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "Lynktree",
     description: "Your one-stop solution for managing and sharing links with style.",
-    image: "/preview.svg",
+    image: "/preview.png",
   },
 };
 
