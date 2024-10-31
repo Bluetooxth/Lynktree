@@ -33,9 +33,7 @@ const Profile = ({ name, username, tagline, profileImg, links }) => {
         <div className="flex flex-col justify-start items-center w-full gap-1">
           <img
             src={profileImg}
-            height={150}
-            width={150}
-            className="rounded-full object-cover"
+            className="rounded-full h-[175px] w-[175px] object-cover"
             alt={`${name}'s profile image`}
           />
           {/* <h2 className="text-3xl font-medium">{name}</h2> */}
