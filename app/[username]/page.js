@@ -73,7 +73,7 @@ const ProfilePage = () => {
         />
         <meta
           property="og:url"
-          content={`${process.env.NEXT_PUBLIC_BASE_URL}/profile/${username}`}
+          content={`${process.env.NEXT_PUBLIC_BASE_URL}/${username}`}
         />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
