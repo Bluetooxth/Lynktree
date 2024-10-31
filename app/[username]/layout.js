@@ -1,4 +1,3 @@
-import React from "react";
 import axios from "axios";
 
 export async function generateMetadata({ params }) {
@@ -13,7 +12,7 @@ export async function generateMetadata({ params }) {
                 title: `${data.name} - ${data.tagline}`,
                 description: `Discover ${data.name}'s profile with interesting links and insights.`,
                 images: [data.profile_url || "/default-profile-image.jpg"],
-                url: `${process.env.NEXT_PUBLIC_BASE_URL}/profile/${params.username}`,
+                url: `${process.env.NEXT_PUBLIC_BASE_URL}/${params.username}`,
             },
             twitter: {
                 card: "summary_large_image",
