@@ -26,13 +26,13 @@ const iconMap = {
   default: MdArrowOutward,
 };
 
-const Profile = ({ name, username, tagline, profile_url, links }) => {
+const Profile = ({ name, username, tagline, profileImg, links }) => {
   return (
     <section className="flex justify-center items-start w-full">
       <div className="flex flex-col justify-start items-center container px-5 gap-7">
         <div className="flex flex-col justify-start items-center w-full gap-1">
           <img
-            src={profile_url}
+            src={profileImg}
             className="rounded-full h-[175px] w-[175px] object-cover"
             alt={`${name}'s profile image`}
           />
