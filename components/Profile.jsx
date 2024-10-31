@@ -35,7 +35,7 @@ const Profile = ({ name, username, tagline, profileImg, links }) => {
             src={profileImg}
             height={150}
             width={150}
-            className="rounded-full"
+            className="rounded-full object-cover"
             alt={`${name}'s profile image`}
           />
           {/* <h2 className="text-3xl font-medium">{name}</h2> */}
@@ -54,7 +54,7 @@ const Profile = ({ name, username, tagline, profileImg, links }) => {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex justify-between items-center gap-2 px-7 py-3 w-full max-w-[500px] link"
+                  className="flex justify-between items-center gap-2 px-7 py-2 md:py-3 w-full max-w-[500px] link"
                 >
                   {IconComponent && <IconComponent className="text-3xl" />}
                   <span className="text-2xl">{link.name}</span>
