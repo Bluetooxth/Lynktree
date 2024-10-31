@@ -3,7 +3,40 @@ import Profile from "@/components/Profile";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "next/navigation";
-import Head from "next/head";
+
+export async function generateMetadata({ params }) {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  const username = params.username;
+
+  try {
+    const { data } = await axios.get(`${apiUrl}/profile/${username}`);
+    return {
+      title: `${data.name} - ${data.tagline}`,
+      description: `Check out ${data.name}'s profile on our platform. ${data.tagline}`,
+      openGraph: {
+        title: `${data.name} - ${data.tagline}`,
+        description: `Discover ${data.name}'s profile with interesting links and insights.`,
+        images: [data.profile_url || "/default-profile-image.jpg"],
+        url: `${process.env.NEXT_PUBLIC_BASE_URL}/profile/${username}`,
+      },
+      twitter: {
+        card: "summary_large_image",
+        title: `${data.name} - ${data.tagline}`,
+        description: `Explore ${data.name}'s profile with unique insights.`,
+        images: [data.profile_url || "/default-profile-image.jpg"],
+      },
+    };
+  } catch (error) {
+    console.error(
+      "Error fetching profile data for metadata:",
+      error.response?.data || error
+    );
+    return {
+      title: "Profile",
+      description: "Loading profile...",
+    };
+  }
+}
 
 const ProfilePage = () => {
   const [user, setUser] = useState(false);
@@ -38,64 +71,23 @@ const ProfilePage = () => {
   }, [username]);
 
   return (
-    <>
-      <Head>
-        <title>
-          {user ? `${profileData.name} - ${profileData.tagline}` : "Profile"}
-        </title>
-        <meta
-          name="description"
-          content={
-            user
-              ? `Check out ${profileData.name}'s profile on our platform. ${profileData.tagline}`
-              : "Loading profile..."
-          }
+    <main className="formbg flex justify-center items-start w-full min-h-screen py-12">
+      {user ? (
+        <Profile
+          name={profileData.name}
+          tagline={profileData.tagline}
+          username={profileData.username}
+          profileImg={profileData.profile_url}
+          links={(profileData.links || []).map((link) => ({
+            name: link.name,
+            icon: link.icon,
+            url: link.url,
+          }))}
         />
-        <meta
-          property="og:title"
-          content={
-            user ? `${profileData.name} - ${profileData.tagline}` : "Profile"
-          }
-        />
-        <meta
-          property="og:description"
-          content={
-            user
-              ? `Discover ${profileData.name}'s profile with interesting links and insights.`
-              : "Loading profile..."
-          }
-        />
-        <meta
-          property="og:image"
-          content={
-            user ? profileData.profile_url : "/default-profile-image.jpg"
-          }
-        />
-        <meta
-          property="og:url"
-          content={`${process.env.NEXT_PUBLIC_BASE_URL}/${username}`}
-        />
-        <meta name="twitter:card" content="summary_large_image" />
-      </Head>
-
-      <main className="formbg flex justify-center items-start w-full min-h-screen py-12">
-        {user ? (
-          <Profile
-            name={profileData.name}
-            tagline={profileData.tagline}
-            username={profileData.username}
-            profileImg={profileData.profile_url}
-            links={(profileData.links || []).map((link) => ({
-              name: link.name,
-              icon: link.icon,
-              url: link.url,
-            }))}
-          />
-        ) : (
-          <p className="text-xl font-normal text-center">Loading profile...</p>
-        )}
-      </main>
-    </>
+      ) : (
+        <p className="text-xl font-normal text-center">Loading profile...</p>
+      )}
+    </main>
   );
 };
 
