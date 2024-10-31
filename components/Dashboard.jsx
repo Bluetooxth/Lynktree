@@ -119,6 +119,9 @@ const UserUpdateForm = () => {
           className="flex flex-col justify-start items-start gap-5 w-full mt-5 formm p-7 rounded-xl"
           onSubmit={handleSubmit}
         >
+          <h3 className="text-xl font-medium text-zinc-200">
+            Your profile url is {`https://lynktree.vercel.app/${username}`}
+          </h3>
           <h2 className="text-3xl font-medium text-zinc-400">
             Update your Lynktree
           </h2>
@@ -308,7 +311,7 @@ const UserUpdateForm = () => {
               type="button"
               onClick={async () => {
                 try {
-                  removeCookie()
+                  removeCookie();
                   setTimeout(() => {
                     router.push("/login");
                   }, 5000);
